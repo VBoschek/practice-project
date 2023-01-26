@@ -1,0 +1,20 @@
+name: Output information
+on: issues
+jobs:
+  og_issue_info:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get Issue Information
+      id: get_issue_info
+      run: |
+        echo "Issue Title: ${{ JSON(github.event.issue.title) }}"
+        echo "Issue Body: ${{ JSON(github.event.issue.body) }}"
+        echo "Issue Number: ${{ JSON(github.event.issue.number) }}"
+        echo "Issue URL: ${{ JSON(github.event.issue.html_url) }}"
+    - name: Log Issue Information
+      run: |
+        echo "Issue Information: ${{ JSON(steps.get_issue_info.outputs.text) }}"
+
+
+
+
